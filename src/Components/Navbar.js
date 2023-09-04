@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 export default class Navbar extends Component {
 static propTypes={}
     render() {
         return (
             <>
-                <nav className="navbar navbar-expand-lg bg-secondary bg-body-secondary">
+                <nav className="navbar navbar-expand-lg bg-secondary bg-body-secondary position-sticky top-0 z-1">
                     <div className="container-fluid text-white">
                         <a className="navbar-brand" href="/"><b className='bg-danger px-3 py-1'>News-Select</b></a>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
