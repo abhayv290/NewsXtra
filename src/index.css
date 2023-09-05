@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+nav{
+  min-height: 80px;
+}
+.brdrhvr:hover{
+ border-bottom:2px solid red;
+}
