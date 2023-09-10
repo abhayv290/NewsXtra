@@ -14,6 +14,10 @@ code {
 nav{
   min-height: 80px;
 }
-.brdrhvr:hover{
- border-bottom:2px solid red;
+.reddash{
+
+  border-bottom:2px solid red;
+}
+.dashhover:hover{
+  border-bottom:2px solid red;
 }

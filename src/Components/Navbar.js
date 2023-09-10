@@ -5,6 +5,25 @@ import { Link } from 'react-router-dom';
 
 export default class Navbar extends Component {
 
+
+
+
+    togglehover = (e) => {
+        const hv = document.getElementById('myul').getElementsByTagName('a');
+        for (let i = 0; i < hv.length; i++) {
+            hv[i].className = 'nav-link';
+
+        }
+        //  console.log(hv);
+        e.target.className = e.target.className + '  reddash';
+        console.log('add class')
+
+
+
+    }
+
+
+
     render() {
         return (
             <>
@@ -15,14 +34,14 @@ export default class Navbar extends Component {
                             <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li className="nav-item brdrhvr">
-                                    <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+                            <ul onClick={this.togglehover} id='myul' className="hvr navbar-nav me-auto mb-2 mb-lg-0">
+                                <li className="nav-item link-danger dashhover ">
+                                    <Link className="nav-link active " aria-current="page" to="/">Home</Link>
                                 </li>
-                                <li className="nav-item brdrhvr">
+                                <li className="nav-item dashhover ">
                                     <Link className="nav-link" to="/News">News</Link>
                                 </li>
-                                <li className="nav-item brdrhvr dropdown">
+                                <li className="nav-item  dropdown dashhover">
                                     <Link className="nav-link dropdown-toggle" to="/Sports" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Sports
                                     </Link>
@@ -33,28 +52,35 @@ export default class Navbar extends Component {
                                         <li><Link className="dropdown-item" to="/Sports/others">Others</Link></li>
                                     </ul>
                                 </li>
-                                <li className="nav-item brdrhvr">
+                                <li className="nav-item dashhover ">
                                     <Link className="nav-link" to="/Science">Science</Link>
                                 </li>
-                                <li className="nav-item brdrhvr">
+                                <li className="nav-item dashhover ">
                                     <Link className="nav-link" to="/Technology">Technology</Link>
                                 </li>
 
-                                <li className="nav-item brdrhvr">
+                                <li className="nav-item dashhover">
                                     <Link className="nav-link" to="/Entertainment">Entertainment</Link>
                                 </li>
-                                <li className="nav-item brdrhvr">
+                                <li className="nav-item dashhover ">
                                     <Link className="nav-link" to="/Business">Business</Link>
                                 </li>
 
-
                             </ul>
-                          
-                            <li className='mx-2 brdrhvr' style={{listStyleType:'none'}}><Link style={{textDecoration:'none'}} to='/profile'>  <img src="https://icon-library.com/images/white-profile-icon/white-profile-icon-9.jpg" height={'38px'} alt="" /> Sign in</Link></li>
-                            <form className="d-flex" role="search">
-                                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                                <button className="btn btn-outline-success" type="submit">Search</button>
-                            </form>
+
+                            <li className='mx-2 brdrhvr' style={{ listStyleType: 'none' }}><Link style={{ textDecoration: 'none' }} to='/profile'>  <img src="https://icon-library.com/images/white-profile-icon/white-profile-icon-9.jpg" height={'38px'} alt="" /> Sign in</Link></li>
+
+                            <div className="btn-group">
+                                <button type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                                  {this.props.country}
+                                </button>
+                                <ul className="dropdown-menu dropdown-menu-lg-end">
+                                    <li><button className="dropdown-item" type="button">Action</button></li>
+                                    <li><button className="dropdown-item" type="button">Another action</button></li>
+                                    <li><button className="dropdown-item" type="button">Something else here</button></li>
+                                </ul>
+                            </div>
+
                         </div>
                     </div>
                 </nav>
@@ -62,3 +88,5 @@ export default class Navbar extends Component {
         );
     }
 }
+
+
