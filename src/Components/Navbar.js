@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 import '../index.css'
 import { Link } from 'react-router-dom';
 
+
 export default class Navbar extends Component {
 
-
-
+    
 
     togglehover = (e) => {
         const hv = document.getElementById('myul').getElementsByTagName('a');
@@ -71,13 +71,13 @@ export default class Navbar extends Component {
                             <li className='mx-2 brdrhvr' style={{ listStyleType: 'none' }}><Link style={{ textDecoration: 'none' }} to='/profile'>  <img src="https://icon-library.com/images/white-profile-icon/white-profile-icon-9.jpg" height={'38px'} alt="" /> Sign in</Link></li>
 
                             <div className="btn-group">
-                                <button type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                                  {this.props.country}
+                                <button type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" >
+                              {this.props.country}
                                 </button>
                                 <ul className="dropdown-menu dropdown-menu-lg-end">
-                                    <li><button className="dropdown-item" type="button">Action</button></li>
-                                    <li><button className="dropdown-item" type="button">Another action</button></li>
-                                    <li><button className="dropdown-item" type="button">Something else here</button></li>
+                                    <li><button className="dropdown-item" type="button">United Kingdom</button></li>
+                                    <li><button className="dropdown-item" type="button">United Kingdom</button></li>
+                                    <li><button className="dropdown-item" type="button">{'Japan'}</button></li>
                                 </ul>
                             </div>
 
