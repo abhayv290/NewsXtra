@@ -1,28 +1,31 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import '../index.css'
 import { Link } from 'react-router-dom';
 
 
 export default class Navbar extends Component {
-
+    static PropType = {
+        country: PropTypes.string,
+        
+}
     
 
     togglehover = (e) => {
         const hv = document.getElementById('myul').getElementsByTagName('a');
         for (let i = 0; i < hv.length; i++) {
             hv[i].className = 'nav-link';
-
         }
-        //  console.log(hv);
         e.target.className = e.target.className + '  reddash';
-        console.log('add class')
-
-
-
     }
 
+      
+       
 
+
+
+   
+  
 
     render() {
         return (
@@ -56,6 +59,9 @@ export default class Navbar extends Component {
                                     <Link className="nav-link" to="/Science">Science</Link>
                                 </li>
                                 <li className="nav-item dashhover ">
+                                    <Link className="nav-link" to="/Health">Health</Link>
+                                </li>
+                                <li className="nav-item dashhover ">
                                     <Link className="nav-link" to="/Technology">Technology</Link>
                                 </li>
 
@@ -70,16 +76,7 @@ export default class Navbar extends Component {
 
                             <li className='mx-2 brdrhvr' style={{ listStyleType: 'none' }}><Link style={{ textDecoration: 'none' }} to='/profile'>  <img src="https://icon-library.com/images/white-profile-icon/white-profile-icon-9.jpg" height={'38px'} alt="" /> Sign in</Link></li>
 
-                            <div className="btn-group">
-                                <button type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" >
-                              {this.props.country}
-                                </button>
-                                <ul className="dropdown-menu dropdown-menu-lg-end">
-                                    <li><button className="dropdown-item" type="button">United Kingdom</button></li>
-                                    <li><button className="dropdown-item" type="button">United Kingdom</button></li>
-                                    <li><button className="dropdown-item" type="button">{'Japan'}</button></li>
-                                </ul>
-                            </div>
+                        
 
                         </div>
                     </div>
