@@ -6,22 +6,20 @@ import Spinner from './spinner';
 
 const News = (props) => {
     const [articles, setArticles] = useState([]);
-    const [page, setPage] = useState(0);
-    const [country] = useState('in');
-    const [headline] = useState('India');
+    const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const [totalResults, setTotalResults] = useState(0);
 
-
-
     const capitalizeText = (word) => {
+
         return word.charAt(0).toUpperCase() + word.slice(1);
     };
 
     const updateNews = async () => {
-        props.setprogress(40)
+        props.setprogress(40);
 
-        const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${props.category}&apiKey=${props.apikey}&page=1&pagesize=3`;
+        const url = `https://newsapi.org/v2/everything?q=${props.category}&apiKey=${props.apikey}&page=1&pagesize=${props.pagesize}`;
+        setLoading(true);
         const data = await fetch(url);
         const parsedata = await data.json();
 
@@ -29,37 +27,37 @@ const News = (props) => {
         setTotalResults(parsedata.totalResults);
         setLoading(false);
 
-        props.setprogress(100)
+        props.setprogress(100);
     };
+
     useEffect(() => {
         document.title = `${capitalizeText(props.category)} - NewsSelect`;
         updateNews();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.category]);
 
     const fetchMoreData = async () => {
-        setPage(page + 1);
+        const nextPage = page + 1;
+        setPage(nextPage);
 
-        const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${props.category}&apiKey=${props.apikey}&page=${page}&pagesize=${props.pagesize}`;
+        const url = `https://newsapi.org/v2/everything?q=${props.category}&apiKey=${props.apikey}&page=${nextPage}&pagesize=${props.pagesize}`;
         const data = await fetch(url);
         const parsedata = await data.json();
 
         setArticles([...articles, ...parsedata.articles]);
         setTotalResults(parsedata.totalResults);
-        setLoading(false);
     };
 
     return (
         <>
             <h1 className="text-center my-3 text-success">
                 {props.headline}
-                {headline}
             </h1>
-            {/* {loading && <Spinner />} */}
             <hr />
             <InfiniteScroll
-                dataLength={articles.length}
+                dataLength={articles?.length}
                 next={fetchMoreData}
-                hasMore={articles.length <= totalResults}
+                hasMore={articles?.length < totalResults}
                 loader={<Spinner />}
                 scrollableTarget="scrollable"
                 endMessage={
@@ -68,17 +66,16 @@ const News = (props) => {
             >
                 <div className="container">
                     <div className="row">
-                        {articles.map((Element, index) => (
-                            <div className="col-md-4 my-3" key={index}>
+                        {articles?.map((element) => (
+                            <div className="col-md-4 my-3" key={element.url}>
                                 <NewsItem
-                                    key={Element.url}
-                                    title={Element.title}
-                                    description={Element.description}
-                                    imgurl={Element.urlToImage}
-                                    Author={Element.author}
-                                    date={Element.publishedAt}
-                                    url={Element.url}
-                                    Source={Element.source.name}
+                                    title={element.title}
+                                    description={element.description}
+                                    imgurl={element.urlToImage}
+                                    author={element.author}
+                                    date={element.publishedAt}
+                                    url={element.url}
+                                    source={element.source.name}
                                 />
                             </div>
                         ))}
@@ -102,6 +99,8 @@ News.propTypes = {
     headline: PropTypes.string,
     country: PropTypes.string,
     category: PropTypes.string,
+    apikey: PropTypes.string.isRequired,
+    setprogress: PropTypes.func.isRequired,
 };
 
 export default News;

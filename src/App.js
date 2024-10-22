@@ -15,6 +15,8 @@ export default function App() {
   const [country, setcountry] = useState('India');
   const apikey = process.env.REACT_APP_NEWS_API;
 
+
+
   const handleSetProgress = (newProgress) => {
     setProgress(newProgress);
   };
@@ -35,7 +37,7 @@ export default function App() {
             <Route
               exact
               path="/"
-              element={<Home key="home" country={country} setprogress={handleSetProgress} />}
+              element={<Home key="home" country={country} apikey={apikey} setprogress={handleSetProgress} />}
             />
             <Route
               exact

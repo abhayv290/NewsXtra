@@ -1,18 +1,12 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
 import '../index.css'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 
 export default function Navbar(props) {
-
-    const togglehover = (e) => {
-        const hv = document.getElementById('myul').getElementsByTagName('a');
-        for (let i = 0; i < hv.length; i++) {
-            hv[i].className = 'nav-link';
-        }
-        e.target.className = e.target.className + '  reddash';
-    }
+    let path=useLocation();
+    
     return (
         <>
             <nav className="navbar navbar-expand-lg bg-body-secondary bg-secondary position-sticky top-0 z-1 ">
@@ -22,11 +16,11 @@ export default function Navbar(props) {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul onClick={togglehover} id='myul' className="hvr navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item link-danger dashhover ">
-                                <Link className="nav-link active " aria-current="page" to="/">Home</Link>
+                        <ul  id='myul' className="hvr navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item link-danger dashhover  ">
+                                <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                             </li>
-                            <li className="nav-item dashhover ">
+                            <li className={`nav-item dashhover ${path.pathname==='/News'?'reddash':''}`}>
                                 <Link className="nav-link" to="/News">News</Link>
                             </li>
                             <li className="nav-item  dropdown dashhover">
@@ -40,20 +34,20 @@ export default function Navbar(props) {
                                     <li><Link className="dropdown-item" to="/Sports/others">Others</Link></li>
                                 </ul>
                             </li>
-                            <li className="nav-item dashhover ">
+                            <li className={`nav-item dashhover ${path.pathname==='/Science'?'reddash':''}`}>
                                 <Link className="nav-link" to="/Science">Science</Link>
                             </li>
-                            <li className="nav-item dashhover ">
+                            <li className={`nav-item dashhover ${path.pathname==='/Health'?'reddash':''}`}>
                                 <Link className="nav-link" to="/Health">Health</Link>
                             </li>
-                            <li className="nav-item dashhover ">
+                            <li className={`nav-item dashhover ${path.pathname==='/Technology'?'reddash':''}`}>
                                 <Link className="nav-link" to="/Technology">Technology</Link>
                             </li>
 
-                            <li className="nav-item dashhover">
+                            <li className={`nav-item dashhover ${path.pathname==='/Entertainment'?'reddash':''}`}>
                                 <Link className="nav-link" to="/Entertainment">Entertainment</Link>
                             </li>
-                            <li className="nav-item dashhover ">
+                            <li className={`nav-item dashhover ${path.pathname==='/Bussiness'?'reddash':''}`}>
                                 <Link className="nav-link" to="/Business">Business</Link>
                             </li>
 
